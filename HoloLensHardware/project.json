@@ -12,6 +12,7 @@
     "Microsoft.NETCore.Portable.Compatibility": "1.0.1-rc4-24127-00",
     "NETStandard.Library": "1.6.0-rc4-24127-00",
     "Newtonsoft.Json": "8.0.4-beta1",
+    "System.IO.FileSystem": "4.0.1-rc4-24127-00",
     "System.Net.Http": "4.1.0-rc4-24127-00",
     "System.Net.WebSockets": "4.0.0-rc4-24127-00",
     "System.Net.WebSockets.Client": "4.0.0-rc4-24127-00"

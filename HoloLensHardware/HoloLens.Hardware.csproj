@@ -60,15 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\OS\Info.cs" />
-    <Compile Include="Api\Power\Config\BatteryLevel.cs" />
     <Compile Include="Api\Power\Config\ConfigSection.cs" />
-    <Compile Include="Api\Power\Config\Group.cs" />
-    <Compile Include="Api\Power\Config\ValueSetting.cs" />
-    <Compile Include="Api\Power\Config\PowerBase.cs" />
     <Compile Include="Api\Power\Config\PowerScheme.cs" />
-    <Compile Include="Api\Power\Config\PossibleValuePower.cs" />
-    <Compile Include="Api\Power\Config\PossibleSetting.cs" />
-    <Compile Include="Api\Power\Config\ValuePowerBase.cs" />
+    <Compile Include="Api\Power\Config\Setting.cs" />
+    <Compile Include="Api\Power\Config\SubGroup.cs" />
     <Compile Include="Api\Power\PowerSection.cs" />
     <Compile Include="Api\OS\OSSection.cs" />
     <Compile Include="Api\Power\Battery.cs" />
