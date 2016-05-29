@@ -120,7 +120,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HoloLensHardware\HoloLens.DevicePortal.csproj">
+    <ProjectReference Include="..\HoloLens.DevicePortal\HoloLens.DevicePortal.csproj">
       <Project>{e668071b-c62f-4b0d-aae8-92c65ba0e2aa}</Project>
       <Name>HoloLens.DevicePortal</Name>
     </ProjectReference>

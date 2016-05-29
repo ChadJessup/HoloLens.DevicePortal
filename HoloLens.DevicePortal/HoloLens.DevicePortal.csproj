@@ -72,7 +72,7 @@
     <Compile Include="Api\Power\PowerState.cs" />
     <Compile Include="Api\Wpr\WindowsPerformanceRecorderSection.cs" />
     <Compile Include="Api\Wpr\WprStatus.cs" />
-    <Compile Include="HoloLensHardware.cs" />
+    <Compile Include="HoloLensDevicePortal.cs" />
     <Compile Include="HoloLensHttpHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
