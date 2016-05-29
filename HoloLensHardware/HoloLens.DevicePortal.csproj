@@ -8,8 +8,8 @@
     <ProjectGuid>{E668071B-C62F-4B0D-AAE8-92C65BA0E2AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HoloLens.Hardware</RootNamespace>
-    <AssemblyName>HoloLens.Hardware</AssemblyName>
+    <RootNamespace>HoloLens.DevicePortal</RootNamespace>
+    <AssemblyName>HoloLens.DevicePortal</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -60,16 +60,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\OS\Info.cs" />
+    <Compile Include="Api\Power\ActivePowerScheme.cs" />
     <Compile Include="Api\Power\Config\ConfigSection.cs" />
     <Compile Include="Api\Power\Config\PowerScheme.cs" />
+    <Compile Include="Api\Power\Config\PowerSchemeParser.cs" />
     <Compile Include="Api\Power\Config\Setting.cs" />
     <Compile Include="Api\Power\Config\SubGroup.cs" />
     <Compile Include="Api\Power\PowerSection.cs" />
     <Compile Include="Api\OS\OSSection.cs" />
     <Compile Include="Api\Power\Battery.cs" />
     <Compile Include="Api\Power\PowerState.cs" />
+    <Compile Include="Api\Wpr\WindowsPerformanceRecorderSection.cs" />
+    <Compile Include="Api\Wpr\WprStatus.cs" />
     <Compile Include="HoloLensHardware.cs" />
-    <Compile Include="HTTPHelpers.cs" />
+    <Compile Include="HoloLensHttpHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\Holographic\MRC\Video\" />
@@ -79,7 +83,6 @@
     <Folder Include="Api\Holographic\Perception\" />
     <Folder Include="Api\Holographic\Thermal\" />
     <Folder Include="Api\ResourceManager\" />
-    <Folder Include="Api\WPR\" />
     <Folder Include="Fonts\" />
     <Folder Include="Images\" />
     <Folder Include="Javascript\" />

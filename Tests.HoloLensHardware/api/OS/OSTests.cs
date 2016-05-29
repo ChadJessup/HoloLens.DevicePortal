@@ -1,7 +1,7 @@
-﻿using HoloLens.Hardware.Api.OS;
+﻿using HoloLens.DevicePortal.Api.OS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HoloLens.Hardware.Tests.Api.OS
+namespace HoloLens.DevicePortal.Tests.Api.OS
 {
     [TestClass]
     public class OSTests
@@ -15,7 +15,7 @@ namespace HoloLens.Hardware.Tests.Api.OS
         [TestMethod]
         public void GetInfoTest()
         {
-            Info info = new HoloLensHardware(TestHoloLens.Address).OS.GetInfoAsync().Result;
+            Info info = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).OS.GetInfoAsync().Result;
 
             Assert.AreEqual(TestConstants.ComputerName, info.ComputerName);
             Assert.AreEqual("en-us", info.Language);
@@ -27,7 +27,7 @@ namespace HoloLens.Hardware.Tests.Api.OS
         [TestMethod]
         public void GetMachineNameTest()
         {
-            string machineName = new HoloLensHardware(TestHoloLens.Address).OS.GetMachineNameAsync().Result;
+            string machineName = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).OS.GetMachineNameAsync().Result;
 
             Assert.AreEqual(TestConstants.ComputerName, machineName);
         }

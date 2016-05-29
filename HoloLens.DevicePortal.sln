@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.HoloLensHardware", "Tests.HoloLensHardware\Tests.HoloLensHardware.csproj", "{84DFAB0A-F210-4AEE-9AAB-0A0834CE8AE6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.HoloLens.DevicePortal", "Tests.HoloLensHardware\Tests.HoloLens.DevicePortal.csproj", "{84DFAB0A-F210-4AEE-9AAB-0A0834CE8AE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens.Hardware", "HoloLensHardware\HoloLens.Hardware.csproj", "{E668071B-C62F-4B0D-AAE8-92C65BA0E2AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoloLens.DevicePortal", "HoloLensHardware\HoloLens.DevicePortal.csproj", "{E668071B-C62F-4B0D-AAE8-92C65BA0E2AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

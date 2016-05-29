@@ -1,10 +1,8 @@
 ﻿
-namespace HoloLens.Hardware.Api.Power
+namespace HoloLens.DevicePortal.Api.Power
 {
     using Config;
     using Newtonsoft.Json;
-    using System.Net;
-    using System.Net.Http;
     using System.Threading.Tasks;
 
     public class PowerSection
@@ -18,44 +16,25 @@ namespace HoloLens.Hardware.Api.Power
 
         public ConfigSection Config { get; set; } = new ConfigSection();
 
+        public async Task<ActivePowerScheme> GetActivePowerSchemeIdAsync()
+        {
+            var content = await HoloLensHttpHelpers.GetContentAsync(Constants.ActiveConfigurationUri);
+
+            return await Task.Run(() => JsonConvert.DeserializeObject<ActivePowerScheme>(content));
+        }
+
         public async Task<PowerState> GetPowerStateAsync()
         {
-            ICredentials creds = new NetworkCredential("test", "1234567");
+            var content = await HoloLensHttpHelpers.GetContentAsync(Constants.StateUri);
 
-            using (HttpClient client = new HttpClient(
-                new HttpClientHandler()
-                {
-                    ClientCertificateOptions = ClientCertificateOption.Automatic,
-                     Credentials = creds,
-                }))
-            {
-                client.BaseAddress = HoloLensHardware.HardwareAddress;
-
-                var response = await client.GetAsync(Constants.StateUri);
-                var content = await response.Content.ReadAsStringAsync();
-
-                return await Task.Run(() => JsonConvert.DeserializeObject<PowerState>(content));
-            }
+            return await Task.Run(() => JsonConvert.DeserializeObject<PowerState>(content));
         }
 
         public async Task<Battery> GetBatteryAsync()
         {
-            ICredentials creds = new NetworkCredential("test", "1234567");
+            var content = await HoloLensHttpHelpers.GetContentAsync(Constants.BatteryUri);
 
-            using (HttpClient client = new HttpClient(
-                new HttpClientHandler()
-                {
-                    ClientCertificateOptions = ClientCertificateOption.Automatic,
-                    Credentials = creds,
-                }))
-            {
-                client.BaseAddress = HoloLensHardware.HardwareAddress;
-
-                var response = await client.GetAsync(Constants.BatteryUri);
-                var content = await response.Content.ReadAsStringAsync();
-
-                return await Task.Run(() => JsonConvert.DeserializeObject<Battery>(content));
-            }
+            return await Task.Run(() => JsonConvert.DeserializeObject<Battery>(content));
         }
     }
 }

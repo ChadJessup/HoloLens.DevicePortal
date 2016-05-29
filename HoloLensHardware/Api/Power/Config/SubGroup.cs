@@ -1,5 +1,5 @@
 ﻿
-namespace HoloLens.Hardware.Api.Power.Config
+namespace HoloLens.DevicePortal.Api.Power.Config
 {
     using System;
     using System.Collections.Concurrent;

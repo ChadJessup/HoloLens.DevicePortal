@@ -1,5 +1,5 @@
 ﻿
-namespace HoloLens.Hardware.Api.OS
+namespace HoloLens.DevicePortal.Api.OS
 {
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -17,42 +17,14 @@ namespace HoloLens.Hardware.Api.OS
 
         public async Task<Info> GetInfoAsync()
         {
-            ICredentials creds = new NetworkCredential("test", "1234567");
-
-            using (HttpClient client = new HttpClient(
-                new HttpClientHandler()
-                {
-                    ClientCertificateOptions = ClientCertificateOption.Automatic,
-                     Credentials = creds,
-                }))
-            {
-                client.BaseAddress = HoloLensHardware.HardwareAddress;
-
-                var response = await client.GetAsync(Constants.InfoUri);
-                var content = await response.Content.ReadAsStringAsync();
-
-                return await Task.Run(() => JsonConvert.DeserializeObject<Info>(content));
-            }
+            var content = await HoloLensHttpHelpers.GetContentAsync(Constants.InfoUri);
+            return await Task.Run(() => JsonConvert.DeserializeObject<Info>(content));
         }
 
         public async Task<string> GetMachineNameAsync()
         {
-            ICredentials creds = new NetworkCredential("test", "1234567");
-
-            using (HttpClient client = new HttpClient(
-                new HttpClientHandler()
-                {
-                    ClientCertificateOptions = ClientCertificateOption.Automatic,
-                    Credentials = creds,
-                }))
-            {
-                client.BaseAddress = HoloLensHardware.HardwareAddress;
-
-                var response = await client.GetAsync(Constants.InfoUri);
-                var content = await response.Content.ReadAsStringAsync();
-
-                return await Task.Run(() => JObject.Parse(content)["ComputerName"].ToString());
-            }
+            var content = await HoloLensHttpHelpers.GetContentAsync(Constants.MachineNameUri);
+            return await Task.Run(() => JObject.Parse(content)["ComputerName"].ToString());
         }
     }
 }

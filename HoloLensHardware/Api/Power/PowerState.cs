@@ -1,4 +1,4 @@
-﻿namespace HoloLens.Hardware.Api.Power
+﻿namespace HoloLens.DevicePortal.Api.Power
 {
     public class PowerState
     {

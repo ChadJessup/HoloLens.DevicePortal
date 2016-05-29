@@ -1,4 +1,4 @@
-﻿namespace HoloLens.Hardware.Api.OS
+﻿namespace HoloLens.DevicePortal.Api.OS
 {
     public class Info
     {

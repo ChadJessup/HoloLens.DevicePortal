@@ -1,4 +1,4 @@
-﻿namespace HoloLens.Hardware.Api.Power
+﻿namespace HoloLens.DevicePortal.Api.Power
 {
     // https://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(v=vs.85).aspx
     public class Battery
