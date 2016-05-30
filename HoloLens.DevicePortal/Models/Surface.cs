@@ -1,5 +1,5 @@
 ﻿
-namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
+namespace HoloLens.DevicePortal.Models
 {
     using Models;
     using System;

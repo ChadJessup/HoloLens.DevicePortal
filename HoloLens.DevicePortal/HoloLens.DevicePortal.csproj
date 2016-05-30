@@ -71,7 +71,7 @@
     <Compile Include="Models\Frustum.cs" />
     <Compile Include="Helpers\Math3dHelpers.cs" />
     <Compile Include="Converters\Matrix4x4Converter.cs" />
-    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\Surface.cs" />
+    <Compile Include="Models\Surface.cs" />
     <Compile Include="Converters\SurfaceConverter.cs" />
     <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\SurfaceReconstructedEventArgs.cs" />
     <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\SurfaceReconstructionDetailsEventArgs.cs" />

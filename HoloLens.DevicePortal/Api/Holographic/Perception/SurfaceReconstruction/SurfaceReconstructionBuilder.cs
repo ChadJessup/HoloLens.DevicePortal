@@ -1,23 +1,33 @@
-﻿using HoloLens.DevicePortal.Converters;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Net;
-using System.Net.WebSockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
+﻿
 namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 {
+    using HoloLens.DevicePortal.Converters;
+    using HoloLens.DevicePortal.Models;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net;
+    using System.Net.WebSockets;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     // A lot of code based upon: https://gist.github.com/xamlmonkey/4737291
     public class SurfaceReconstructionBuilder
     {
         private static class Constants
         {
             public const string ClientUri = "/api/holographic/perception/client"; //?clientmode=passive";
+
+            public const string ClientModeQueryString = "?clientmode=";
+
+            public const string GetSRData = "getsrdata";
+
+            public const string SurfaceObserverPropertyName = "SurfaceObserverStatus";
+            public const string TrackingStatePropertyName = "TrackingState";
+            public const string SurfacePropertyName = "Surface";
         }
 
         private CancellationTokenSource tokenSource = new CancellationTokenSource();
@@ -34,7 +44,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 
         public SurfaceReconstructionBuilder(Uri holoLensAddress, NetworkCredential credentials)
         {
-            var url = holoLensAddress + Constants.ClientUri + "?clientmode=passive";
+            var url = holoLensAddress + Constants.ClientUri + Constants.ClientModeQueryString +"passive";
             this.webSocket = new ClientWebSocket();
             this.webSocket.Options.Credentials = credentials;
             this.websocketEndpoint = new Uri(url.Replace("http", "ws"));
@@ -43,6 +53,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 
             this.serializer.FloatParseHandling = FloatParseHandling.Decimal;
             this.serializer.Culture = new CultureInfo(string.Empty) { NumberFormat = new NumberFormatInfo {  NumberDecimalDigits = 7 } };
+
             this.serializer.Converters.Add(new Vector4Converter());
             this.serializer.Converters.Add(new Matrix4x4Converter());
             this.serializer.Converters.Add(new SurfaceConverter());
@@ -59,7 +70,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
         {
             this.getSRData = true;
 
-            await Task.Run(() => this.SendMessageAsync("getsrdata"))
+            await Task.Run(() => this.SendMessageAsync(Constants.GetSRData))
                 .ContinueWith((o)=> this.StartListenAsync());
         }
 
@@ -68,7 +79,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
             this.getLiveDetails = true;
             this.getSRData = true;
 
-            return Task.Run(() => this.SendMessageAsync("getsrdata"))
+            return Task.Run(() => this.SendMessageAsync(Constants.GetSRData))
                 .ContinueWith((o) => this.StartListenAsync());
         }
 
@@ -110,8 +121,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
                         }
                         else
                         {
-                            var str = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                            stringResult.Append(str);
+                            stringResult.Append(Encoding.UTF8.GetString(buffer, 0, result.Count));
                         }
 
                     } while (!result.EndOfMessage);
@@ -133,7 +143,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
         {
             JObject response = JObject.Parse(srJson);
 
-            if (this.getLiveDetails && response.Properties().Any(prop => prop.Name == "TrackingState"))
+            if (this.getLiveDetails && response.Properties().Any(prop => prop.Name == Constants.TrackingStatePropertyName))
             {
                 Task.Run(() => 
                     this.OnLiveDetailsReceived?.Invoke(
@@ -142,28 +152,27 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
                             response.ToObject<SurfaceReconstructionDetails>(this.serializer))));
             }
 
-            if (this.getSRData && response.Properties().Any(prop => prop.Name == "SurfaceObserverStatus"))
+            if (this.getSRData && response.Properties().Any(prop => prop.Name == Constants.SurfaceObserverPropertyName))
             {
-                if (response["SurfaceObserverStatus"].ToString() == "OK")
+                if (response[Constants.SurfaceObserverPropertyName].ToString() == "OK")
                 {
-                    Task.Run(() => 
+                    Task.Run(() =>
                     this.OnSurfaceReceived?.Invoke(
                         this,
-                        new SurfaceReconstructedEventArgs(response["Surface"].ToObject<Surface>(this.serializer))));
-
+                        new SurfaceReconstructedEventArgs(
+                            response[Constants.SurfacePropertyName].ToObject<Surface>(this.serializer))));
                 }
             }
-
-            
         }
 
         private async Task SendMessageAsync(string message)
         {
             await this.ConnectWebSocket();
-
-            var etf8Message = Encoding.UTF8.GetBytes(message);
-
-            await this.webSocket.SendAsync(new ArraySegment<byte>(etf8Message), WebSocketMessageType.Text, endOfMessage: true, cancellationToken: this.cancellationToken);
+            await this.webSocket.SendAsync(
+                new ArraySegment<byte>(Encoding.UTF8.GetBytes(message)),
+                WebSocketMessageType.Text,
+                endOfMessage: true,
+                cancellationToken: this.cancellationToken);
         }
     }
 }
