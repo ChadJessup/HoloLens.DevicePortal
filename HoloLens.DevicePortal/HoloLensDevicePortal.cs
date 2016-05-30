@@ -1,7 +1,10 @@
 ﻿namespace HoloLens.DevicePortal
 {
+    using Api.App;
+    using Api.Holographic;
     using Api.OS;
     using Api.Power;
+    using Api.ResourceManager;
     using Api.Wpr;
     using System;
     using System.Net;
@@ -26,5 +29,8 @@
         public OSSection OS { get; } = new OSSection();
         public PowerSection Power { get; } = new PowerSection();
         public WindowsPerformanceRecorderSection Wpf { get; } = new WindowsPerformanceRecorderSection();
+        public AppSection App { get; } = new AppSection();
+        public ResourceManagerSection ResourceManager { get; } = new ResourceManagerSection();
+        public HolographicSection Holographic { get; } = new HolographicSection();
     }
 }

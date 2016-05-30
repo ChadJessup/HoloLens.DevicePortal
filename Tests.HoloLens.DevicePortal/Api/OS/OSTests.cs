@@ -1,7 +1,8 @@
-﻿using HoloLens.DevicePortal.Api.OS;
+﻿using HoloLens.DevicePortal;
+using HoloLens.DevicePortal.Api.OS;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HoloLens.DevicePortal.Tests.Api.OS
+namespace Tests.HoloLens.DevicePortal.Api.OS
 {
     [TestClass]
     public class OSTests

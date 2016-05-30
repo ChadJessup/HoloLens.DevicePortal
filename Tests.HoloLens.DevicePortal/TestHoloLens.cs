@@ -1,6 +1,6 @@
 ﻿
 
-namespace HoloLens.DevicePortal.Tests
+namespace Tests.HoloLens.DevicePortal
 {
     using System.Net;
 

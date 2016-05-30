@@ -1,7 +1,8 @@
-﻿using HoloLens.DevicePortal.Api.Power;
+﻿using HoloLens.DevicePortal;
+using HoloLens.DevicePortal.Api.Power;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HoloLens.DevicePortal.Tests.Api.Power
+namespace Tests.HoloLens.DevicePortal.Api.Power
 {
     [TestClass]
     public class PowerTests

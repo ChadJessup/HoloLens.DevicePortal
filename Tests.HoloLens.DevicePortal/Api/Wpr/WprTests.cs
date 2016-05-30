@@ -1,8 +1,8 @@
-﻿using HoloLens.DevicePortal.Api.Power;
+﻿using HoloLens.DevicePortal;
 using HoloLens.DevicePortal.Api.Wpr;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HoloLens.DevicePortal.Tests.Api.Wpr
+namespace Tests.HoloLens.DevicePortal.Api.Wpr
 {
     [TestClass]
     public class WprTests

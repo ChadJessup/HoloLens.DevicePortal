@@ -59,7 +59,29 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\App\AppSection.cs" />
+    <Compile Include="Api\App\PackageManager\InstalledPackage.cs" />
+    <Compile Include="Api\App\PackageManager\PackageManager.cs" />
+    <Compile Include="Api\App\PackageManager\PackageVersion.cs" />
+    <Compile Include="Api\Holographic\HolographicSection.cs" />
+    <Compile Include="Api\Holographic\Perception\PerceptionSection.cs" />
+    <Compile Include="Models\Camera.cs" />
+    <Compile Include="Models\Display.cs" />
+    <Compile Include="Models\Face.cs" />
+    <Compile Include="Models\Frustum.cs" />
+    <Compile Include="Helpers\Math3dHelpers.cs" />
+    <Compile Include="Converters\Matrix4x4Converter.cs" />
+    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\Surface.cs" />
+    <Compile Include="Converters\SurfaceConverter.cs" />
+    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\SurfaceReconstructedEventArgs.cs" />
+    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\SurfaceReconstructionDetailsEventArgs.cs" />
+    <Compile Include="Models\LSRPlane.cs" />
+    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\SurfaceReconstructionBuilder.cs" />
+    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\SurfaceReconstructionDetails.cs" />
+    <Compile Include="Api\Holographic\Perception\SurfaceReconstruction\TrackingState.cs" />
+    <Compile Include="Converters\Vector4Converter.cs" />
     <Compile Include="Api\OS\Info.cs" />
+    <Compile Include="Api\App\PackageManager\PackageManagerSection.cs" />
     <Compile Include="Api\Power\ActivePowerScheme.cs" />
     <Compile Include="Api\Power\Config\ConfigSection.cs" />
     <Compile Include="Api\Power\Config\PowerScheme.cs" />
@@ -70,24 +92,27 @@
     <Compile Include="Api\OS\OSSection.cs" />
     <Compile Include="Api\Power\Battery.cs" />
     <Compile Include="Api\Power\PowerState.cs" />
+    <Compile Include="Api\ResourceManager\HoloLensProcess.cs" />
+    <Compile Include="Api\ResourceManager\ResourceManagerSection.cs" />
     <Compile Include="Api\Wpr\WindowsPerformanceRecorderSection.cs" />
     <Compile Include="Api\Wpr\WprStatus.cs" />
     <Compile Include="HoloLensDevicePortal.cs" />
     <Compile Include="HoloLensHttpHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Api\Holographic\DeveloperPerformance\" />
     <Folder Include="Api\Holographic\MRC\Video\" />
     <Folder Include="Api\Holographic\OS\ETW\" />
     <Folder Include="Api\Holographic\OS\Settings\" />
     <Folder Include="Api\Holographic\OS\WebManagement\" />
-    <Folder Include="Api\Holographic\Perception\" />
     <Folder Include="Api\Holographic\Thermal\" />
-    <Folder Include="Api\ResourceManager\" />
     <Folder Include="Fonts\" />
     <Folder Include="Images\" />
-    <Folder Include="Javascript\" />
     <Folder Include="PerfProfiles\" />
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Javascript\3dview.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

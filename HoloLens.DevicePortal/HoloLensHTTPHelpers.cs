@@ -1,6 +1,7 @@
 ﻿
 namespace HoloLens.DevicePortal
 {
+    using System;
     using System.Net.Http;
     using System.Threading.Tasks;
 
@@ -20,6 +21,11 @@ namespace HoloLens.DevicePortal
                 var response = await client.GetAsync(endpoint);
                 return await response.Content.ReadAsStringAsync();
             }
+        }
+
+        internal static Task GetContentAsync(object installationStateUri)
+        {
+            throw new NotImplementedException();
         }
     }
 }
