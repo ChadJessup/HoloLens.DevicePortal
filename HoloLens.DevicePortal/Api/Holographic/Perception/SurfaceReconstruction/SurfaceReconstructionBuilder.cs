@@ -1,19 +1,18 @@
-﻿
+﻿using HoloLens.DevicePortal.Converters;
+using HoloLens.DevicePortal.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Net;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 {
-    using HoloLens.DevicePortal.Converters;
-    using HoloLens.DevicePortal.Models;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-    using System;
-    using System.Globalization;
-    using System.Linq;
-    using System.Net;
-    using System.Net.WebSockets;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-
     // A lot of code based upon: https://gist.github.com/xamlmonkey/4737291
     public class SurfaceReconstructionBuilder
     {
@@ -49,10 +48,11 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
             this.webSocket.Options.Credentials = credentials;
             this.websocketEndpoint = new Uri(url.Replace("http", "ws"));
 
-            this.serializer = new JsonSerializer();
-
-            this.serializer.FloatParseHandling = FloatParseHandling.Decimal;
-            this.serializer.Culture = new CultureInfo(string.Empty) { NumberFormat = new NumberFormatInfo {  NumberDecimalDigits = 7 } };
+            this.serializer = new JsonSerializer
+            {
+                FloatParseHandling = FloatParseHandling.Decimal,
+                Culture = new CultureInfo(string.Empty) { NumberFormat = new NumberFormatInfo { NumberDecimalDigits = 7 } }
+            };
 
             this.serializer.Converters.Add(new Vector4Converter());
             this.serializer.Converters.Add(new Matrix4x4Converter());
@@ -63,15 +63,15 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
         {
             this.getLiveDetails = true;
 
-            await Task.Run(() => this.StartListenAsync());
+            await this.StartListenAsync();
         }
 
         public async Task StartReconstructionAsync()
         {
             this.getSRData = true;
 
-            await Task.Run(() => this.SendMessageAsync(Constants.GetSRData))
-                .ContinueWith((o)=> this.StartListenAsync());
+            await this.SendMessageAsync(Constants.GetSRData)
+                .ContinueWith((o) => this.StartListenAsync());
         }
 
         public Task StartGatheringAllDataAsync()
@@ -79,7 +79,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
             this.getLiveDetails = true;
             this.getSRData = true;
 
-            return Task.Run(() => this.SendMessageAsync(Constants.GetSRData))
+            return this.SendMessageAsync(Constants.GetSRData)
                 .ContinueWith((o) => this.StartListenAsync());
         }
 
@@ -129,7 +129,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
                     this.ParseMessage(stringResult.ToString());
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //CallOnDisconnected();
             }
@@ -145,22 +145,20 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 
             if (this.getLiveDetails && response.Properties().Any(prop => prop.Name == Constants.TrackingStatePropertyName))
             {
-                Task.Run(() => 
-                    this.OnLiveDetailsReceived?.Invoke(
-                        this, 
-                        new SurfaceReconstructionDetailsEventArgs(
-                            response.ToObject<SurfaceReconstructionDetails>(this.serializer))));
+                this.OnLiveDetailsReceived?.Invoke(
+                    this,
+                    new SurfaceReconstructionDetailsEventArgs(
+                        response.ToObject<SurfaceReconstructionDetails>(this.serializer)));
             }
 
             if (this.getSRData && response.Properties().Any(prop => prop.Name == Constants.SurfaceObserverPropertyName))
             {
                 if (response[Constants.SurfaceObserverPropertyName].ToString() == "OK")
                 {
-                    Task.Run(() =>
                     this.OnSurfaceReceived?.Invoke(
                         this,
                         new SurfaceReconstructedEventArgs(
-                            response[Constants.SurfacePropertyName].ToObject<Surface>(this.serializer))));
+                            response[Constants.SurfacePropertyName].ToObject<Surface>(this.serializer)));
                 }
             }
         }

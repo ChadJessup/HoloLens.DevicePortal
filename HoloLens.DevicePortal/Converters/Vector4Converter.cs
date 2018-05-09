@@ -1,11 +1,10 @@
-﻿
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Numerics;
+
 namespace HoloLens.DevicePortal.Converters
 {
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-    using System;
-    using System.Numerics;
-
     public class Vector4Converter : JsonConverter
     {
         public override bool CanConvert(Type objectType)

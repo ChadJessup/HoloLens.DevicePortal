@@ -1,8 +1,7 @@
-﻿
+﻿using System.Threading.Tasks;
+
 namespace HoloLens.DevicePortal.Api.Power.Config
 {
-    using System.Threading.Tasks;
-
     public class ConfigSection
     {
         private static class Constants

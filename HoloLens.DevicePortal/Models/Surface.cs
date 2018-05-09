@@ -1,11 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Numerics;
+
 namespace HoloLens.DevicePortal.Models
 {
-    using Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Numerics;
-
     public class Surface
     {
         public Guid SurfaceId { get; set; }

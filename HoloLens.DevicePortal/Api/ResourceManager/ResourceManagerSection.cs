@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace HoloLens.DevicePortal.Api.ResourceManager
 {
@@ -20,7 +17,7 @@ namespace HoloLens.DevicePortal.Api.ResourceManager
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.ActiveProcessesUri);
             var jsonObject = JObject.Parse(content)["Processes"];
 
-            return await Task.Run(() => jsonObject.ToObject<List<HoloLensProcess>>());
+            return jsonObject.ToObject<List<HoloLensProcess>>();
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Concurrent;
+
 namespace HoloLens.DevicePortal.Api.Power.Config
 {
-    using System;
-    using System.Collections.Concurrent;
-
     public class SubGroup
     {
         public string Alias { get; set; }

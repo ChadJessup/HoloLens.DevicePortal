@@ -1,8 +1,8 @@
-﻿namespace HoloLens.DevicePortal.Models
-{
-    using System.Collections.Generic;
-    using System.Numerics;
+﻿using System.Collections.Generic;
+using System.Numerics;
 
+namespace HoloLens.DevicePortal.Models
+{
     public class Face
     {
         public Face(int v1idx, int v2idx, int v3idx, IEnumerable<Vector4> vertices)

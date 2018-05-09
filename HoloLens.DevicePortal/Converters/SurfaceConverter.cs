@@ -1,15 +1,13 @@
-﻿
+﻿using HoloLens.DevicePortal.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
 namespace HoloLens.DevicePortal.Converters
 {
-    using Api.Holographic.Perception.SurfaceReconstruction;
-    using Models;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Numerics;
-
     public class SurfaceConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)

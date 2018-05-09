@@ -1,9 +1,8 @@
-﻿
+﻿using Newtonsoft.Json;
+using System.Threading.Tasks;
+
 namespace HoloLens.DevicePortal.Api.Wpr
 {
-    using Newtonsoft.Json;
-    using System.Threading.Tasks;
-
     public class WindowsPerformanceRecorderSection
     {
         private static class Constants
@@ -15,7 +14,7 @@ namespace HoloLens.DevicePortal.Api.Wpr
         {
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.StatusUri);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<WprStatus>(content));
+            return JsonConvert.DeserializeObject<WprStatus>(content);
         }
     }
 }

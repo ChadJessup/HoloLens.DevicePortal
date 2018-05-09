@@ -1,9 +1,8 @@
-﻿
+﻿using Newtonsoft.Json;
+using System;
+
 namespace HoloLens.DevicePortal.Api.Power
 {
-    using Newtonsoft.Json;
-    using System;
-
     public class ActivePowerScheme
     {
         [JsonProperty(PropertyName = "ActivePowerScheme")]

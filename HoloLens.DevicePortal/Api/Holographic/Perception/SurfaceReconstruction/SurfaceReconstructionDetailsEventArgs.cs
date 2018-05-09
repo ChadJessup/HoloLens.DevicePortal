@@ -1,8 +1,7 @@
-﻿
+﻿using System;
+
 namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 {
-    using System;
-
     public class SurfaceReconstructionDetailsEventArgs : EventArgs
     {
         public SurfaceReconstructionDetailsEventArgs(SurfaceReconstructionDetails details)

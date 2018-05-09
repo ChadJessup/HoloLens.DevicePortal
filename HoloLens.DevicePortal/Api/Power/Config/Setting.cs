@@ -1,9 +1,8 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+
 namespace HoloLens.DevicePortal.Api.Power.Config
 {
-    using System;
-    using System.Collections.Generic;
-
     public class Setting
     {
         public string Alias { get; set; }

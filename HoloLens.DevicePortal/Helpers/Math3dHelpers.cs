@@ -1,14 +1,14 @@
-﻿
+﻿using System.Numerics;
+
 namespace HoloLens.DevicePortal.Helpers
 {
-    using System.Numerics;
 
     public static class Math3dHelpers
     {
         // TODO: Port from: https://github.com/mrdoob/three.js/blob/master/src/math/Matrix4.js
-        public static Matrix4x4 Transpose (this Matrix4x4 te)
+        public static Matrix4x4 Transpose(this Matrix4x4 te)
         {
-            Vector4 tmp;
+            //Vector4 tmp;
             //Matrix4x4 v = new Matrix4x4()
             //tmp = te.M11; te.M11 = te.M4; te.M4 = tmp;
             //tmp = te.M2; te.M2 = te.M8; te.M8 = tmp;

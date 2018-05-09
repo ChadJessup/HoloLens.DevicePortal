@@ -1,8 +1,7 @@
-﻿
+﻿using System;
+
 namespace HoloLens.DevicePortal.Api.App.PackageManager
 {
-    using System;
-
     public class InstalledPackage
     {
         public string Name { get; set; }

@@ -1,8 +1,7 @@
-﻿
+﻿using System.Runtime.Serialization;
+
 namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
 {
-    using System.Runtime.Serialization;
-
     public enum TrackingState
     {
         [EnumMember(Value = "unavailable")]

@@ -1,10 +1,9 @@
-﻿
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
+
 namespace HoloLens.DevicePortal.Api.App.PackageManager
 {
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-    using System.Threading.Tasks;
-
     public class PackageManagerSection
     {
         private static class Constants
@@ -17,14 +16,14 @@ namespace HoloLens.DevicePortal.Api.App.PackageManager
         {
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.PackagesUri);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<PackageManager>(content));
+            return JsonConvert.DeserializeObject<PackageManager>(content);
         }
 
         public async Task<string> GetInstallationStateAsync()
         {
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.InstallationStateUri);
 
-            return await Task.Run(() => JObject.Parse(content)["Reason"].ToString());
+            return JObject.Parse(content)["Reason"].ToString();
         }
     }
 }

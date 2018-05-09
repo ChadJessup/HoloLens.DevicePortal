@@ -5,12 +5,12 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception
 {
     public class PerceptionSection
     {
-        public Task<SurfaceReconstructionBuilder> StartSurfaceReconstruction()
+        public async Task<SurfaceReconstructionBuilder> StartSurfaceReconstruction()
         {
             var sr = new SurfaceReconstructionBuilder(HoloLensHardware.HardwareAddress, HoloLensHardware.Credentials);
-            sr.StartGatheringAllDataAsync();
+            await sr.StartGatheringAllDataAsync();
 
-            return Task.FromResult<SurfaceReconstructionBuilder>(sr);
+            return sr;
         }
     }
 }

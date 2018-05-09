@@ -20,21 +20,21 @@ namespace HoloLens.DevicePortal.Api.Power
         {
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.ActiveConfigurationUri);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<ActivePowerScheme>(content));
+            return JsonConvert.DeserializeObject<ActivePowerScheme>(content);
         }
 
         public async Task<PowerState> GetPowerStateAsync()
         {
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.StateUri);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<PowerState>(content));
+            return JsonConvert.DeserializeObject<PowerState>(content);
         }
 
         public async Task<Battery> GetBatteryAsync()
         {
             var content = await HoloLensHttpHelpers.GetContentAsync(Constants.BatteryUri);
 
-            return await Task.Run(() => JsonConvert.DeserializeObject<Battery>(content));
+            return JsonConvert.DeserializeObject<Battery>(content);
         }
     }
 }

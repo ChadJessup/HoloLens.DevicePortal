@@ -1,7 +1,7 @@
-﻿namespace HoloLens.DevicePortal.Models
-{
-    using System.Numerics;
+﻿using System.Numerics;
 
+namespace HoloLens.DevicePortal.Models
+{
     public class Frustum
     {
         public Vector4 Bottom { get; set; }

@@ -1,8 +1,7 @@
-﻿
+﻿using System;
+
 namespace HoloLens.DevicePortal.Api.ResourceManager
 {
-    using System;
-
     public class HoloLensProcess
     {
         public double CPUUsage { get; set; }

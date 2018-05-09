@@ -1,14 +1,14 @@
-﻿namespace HoloLens.DevicePortal
-{
-    using Api.App;
-    using Api.Holographic;
-    using Api.OS;
-    using Api.Power;
-    using Api.ResourceManager;
-    using Api.Wpr;
-    using System;
-    using System.Net;
+﻿using HoloLens.DevicePortal.Api.App;
+using HoloLens.DevicePortal.Api.Holographic;
+using HoloLens.DevicePortal.Api.OS;
+using HoloLens.DevicePortal.Api.Power;
+using HoloLens.DevicePortal.Api.ResourceManager;
+using HoloLens.DevicePortal.Api.Wpr;
+using System;
+using System.Net;
 
+namespace HoloLens.DevicePortal
+{
     // https://msdn.microsoft.com/en-us/windows/uwp/debug-test-perf/device-portal-api-core
     public class HoloLensHardware
     {
