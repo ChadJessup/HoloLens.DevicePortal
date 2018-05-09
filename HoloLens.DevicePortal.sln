@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoloLens.DevicePortal", "HoloLens.DevicePortal\HoloLens.DevicePortal.csproj", "{6D6E6CF9-D7B5-4D0C-A018-7A4CA5C5D8F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.HoloLens.DevicePortal", "Tests.HoloLens.DevicePortal\Tests.HoloLens.DevicePortal.csproj", "{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{6D6E6CF9-D7B5-4D0C-A018-7A4CA5C5D8F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D6E6CF9-D7B5-4D0C-A018-7A4CA5C5D8F0}.Release|x86.ActiveCfg = Release|Any CPU
 		{6D6E6CF9-D7B5-4D0C-A018-7A4CA5C5D8F0}.Release|x86.Build.0 = Release|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{B7057C7B-453D-4F1A-B3AE-D4DA95D946FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

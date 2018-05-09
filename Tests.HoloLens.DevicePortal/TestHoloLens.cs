@@ -1,14 +1,26 @@
-﻿
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Net;
 
 namespace Tests.HoloLens.DevicePortal
 {
-    using System.Net;
-
-    public static class TestHoloLens
+    public class TestHoloLens
     {
-        public const string Address = "http://192.168.1.134";
-        public const string TestUsername = "test";
-        public const string TestPassword = "1234567";
-        public static readonly NetworkCredential Credentials = new NetworkCredential(TestHoloLens.TestUsername, TestHoloLens.TestPassword);
+        public TestHoloLens(string testFilePath = "./hololensTest.json")
+        {
+            if (!File.Exists(testFilePath))
+            {
+                throw new InvalidOperationException($"Unable to load test file with address/credentials: {testFilePath}");
+            }
+
+            JsonConvert.PopulateObject(File.ReadAllText(testFilePath), this);
+            this.Credentials = new NetworkCredential(this.TestUsername, this.TestPassword);
+        }
+
+        public string Address = "http://192.168.1.186";
+        public string TestUsername = "test";
+        public string TestPassword = "1234567";
+        public NetworkCredential Credentials { get; set; }
     }
 }

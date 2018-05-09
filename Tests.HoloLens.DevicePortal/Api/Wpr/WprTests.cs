@@ -1,19 +1,18 @@
 ﻿using HoloLens.DevicePortal;
 using HoloLens.DevicePortal.Api.Wpr;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Tests.HoloLens.DevicePortal.Api.Wpr
 {
-    [TestClass]
     public class WprTests
     {
-        [TestMethod]
+        [Fact]
         public void GetStatusTests()
         {
-            WprStatus status = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).Wpf.GetWprStatusAsync().Result;
+            WprStatus status = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).Wpf.GetWprStatusAsync().Result;
 
-            Assert.AreEqual(WprSessionType.Idle, status.State);
-            Assert.AreEqual(WprStateType.Normal, status.SessionType);
+            Assert.Equal(WprSessionType.Idle, status.State);
+            Assert.Equal(WprStateType.Normal, status.SessionType);
         }
     }
 }

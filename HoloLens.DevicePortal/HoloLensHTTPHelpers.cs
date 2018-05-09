@@ -16,8 +16,15 @@ namespace HoloLens.DevicePortal
             {
                 client.BaseAddress = HoloLensHardware.HardwareAddress;
 
-                var response = await client.GetAsync(endpoint);
-                return await response.Content.ReadAsStringAsync();
+                try
+                {
+                    var response = await client.GetAsync(endpoint);
+                    return await response.Content.ReadAsStringAsync();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
         }
 

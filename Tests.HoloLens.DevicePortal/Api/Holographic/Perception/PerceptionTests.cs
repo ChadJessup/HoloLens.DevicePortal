@@ -1,20 +1,15 @@
 ﻿using HoloLens.DevicePortal;
 using HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction;
 using HoloLens.DevicePortal.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading;
+using Xunit;
 
 namespace Tests.HoloLens.DevicePortal.Api.Holographic.Perception
 {
-    [TestClass]
     public class PerceptionTests
     {
-        private static class TestConstants
-        {
-        }
-
-        [TestMethod]
+        [Fact]
         public void GetAllDetailsTest()
         {
             SurfaceReconstructionDetails deets = null;
@@ -23,7 +18,7 @@ namespace Tests.HoloLens.DevicePortal.Api.Holographic.Perception
             ManualResetEvent onLiveDetailsResetEvent = new ManualResetEvent(initialState: false);
             ManualResetEvent onSurfaceReceivedResetEvent = new ManualResetEvent(initialState: false);
 
-            var sr = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).Holographic.Perception.StartSurfaceReconstruction().Result;
+            var sr = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).Holographic.Perception.StartSurfaceReconstruction().Result;
 
             sr.OnLiveDetailsReceived += (o, e) =>
             {
@@ -40,8 +35,8 @@ namespace Tests.HoloLens.DevicePortal.Api.Holographic.Perception
             onLiveDetailsResetEvent.WaitOne(TimeSpan.FromSeconds(10.0));
             onSurfaceReceivedResetEvent.WaitOne(TimeSpan.FromSeconds(10.0));
 
-            Assert.IsNotNull(deets);
-            Assert.IsNotNull(surface);
+            Assert.NotNull(deets);
+            Assert.NotNull(surface);
         }
     }
 }

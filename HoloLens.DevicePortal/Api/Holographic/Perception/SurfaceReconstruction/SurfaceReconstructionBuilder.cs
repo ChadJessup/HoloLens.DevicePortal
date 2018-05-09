@@ -46,6 +46,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
             var url = holoLensAddress + Constants.ClientUri + Constants.ClientModeQueryString +"passive";
             this.webSocket = new ClientWebSocket();
             this.webSocket.Options.Credentials = credentials;
+            this.webSocket.Options.UseDefaultCredentials = false;
             this.websocketEndpoint = new Uri(url.Replace("http", "ws"));
 
             this.serializer = new JsonSerializer
@@ -80,7 +81,7 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
             this.getSRData = true;
 
             return this.SendMessageAsync(Constants.GetSRData)
-                .ContinueWith((o) => this.StartListenAsync());
+                .ContinueWith(o => this.StartListenAsync());
         }
 
         private async Task<bool> ConnectWebSocket()
@@ -93,7 +94,14 @@ namespace HoloLens.DevicePortal.Api.Holographic.Perception.SurfaceReconstruction
             this.cancellationToken = this.tokenSource.Token;
 
             // TODO: chadj - 5/29/16 - fill in negatives once you know what they are...
-            await this.webSocket.ConnectAsync(this.websocketEndpoint, this.cancellationToken);
+            try
+            {
+                await this.webSocket.ConnectAsync(this.websocketEndpoint, this.cancellationToken);
+            }
+            catch (Exception e)
+            {
+
+            }
 
             return true;
         }

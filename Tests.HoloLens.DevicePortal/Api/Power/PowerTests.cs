@@ -1,28 +1,27 @@
 ﻿using HoloLens.DevicePortal;
 using HoloLens.DevicePortal.Api.Power;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Tests.HoloLens.DevicePortal.Api.Power
 {
-    [TestClass]
     public class PowerTests
     {
-        [TestMethod]
+        [Fact]
         public void GetPowerStateTest()
         {
-            PowerState power = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).Power.GetPowerStateAsync().Result;
+            PowerState power = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).Power.GetPowerStateAsync().Result;
         }
 
-        [TestMethod]
+        [Fact]
         public void GetActiveConfigurationTest()
         {
-            var content = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).Power.GetActivePowerSchemeIdAsync().Result;
+            var content = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).Power.GetActivePowerSchemeIdAsync().Result;
         }
 
-        [TestMethod]
+        [Fact]
         public void GetBatteryTest()
         {
-            Battery battery = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).Power.GetBatteryAsync().Result;
+            Battery battery = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).Power.GetBatteryAsync().Result;
         }
     }
 }

@@ -1,16 +1,15 @@
 ﻿using HoloLens.DevicePortal;
 using HoloLens.DevicePortal.Api.OS;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Tests.HoloLens.DevicePortal.Api.ResourceManager
 {
-    [TestClass]
     public class ResourceManagerTests
     {
-        [TestMethod]
+        [Fact]
         public void GetActiveProcessesTest()
         {
-            var activeProcesses = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).ResourceManager.GetActiveProcessesAsync().Result;
+            var activeProcesses = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).ResourceManager.GetActiveProcessesAsync().Result;
         }
     }
 }

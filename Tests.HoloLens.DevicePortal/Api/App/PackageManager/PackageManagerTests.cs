@@ -1,27 +1,22 @@
 ﻿using HoloLens.DevicePortal;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace Tests.HoloLens.DevicePortal.Api.App.PackageManager
 {
-    [TestClass]
     public class PackageManagerTests
     {
-        private static class TestConstants
-        {
-        }
-
-        [TestMethod]
+        [Fact]
         public void GetInstalledPackagesTest()
         {
-            var pm = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).App.PackageManager.GetInstalledPackagesAsync().Result;
+            var pm = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).App.PackageManager.GetInstalledPackagesAsync().Result;
         }
 
-        [TestMethod]
+        [Fact]
         public void GetInstallationStateTest()
         {
-            string result = new HoloLensHardware(TestHoloLens.Address, TestHoloLens.Credentials).App.PackageManager.GetInstallationStateAsync().Result;
+            string result = new HoloLensHardware(TestFixture.Context.Address, TestFixture.Context.Credentials).App.PackageManager.GetInstallationStateAsync().Result;
 
-            Assert.IsTrue("No installation action was found".Equals(result));
+            Assert.Equal("No installation action was found", result);
         }
     }
 }
